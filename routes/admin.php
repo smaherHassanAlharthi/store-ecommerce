@@ -2,7 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\LoginController;
+use App\Http\Controllers\Dashboard\SettingsController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+
 /*
 |--------------------------------------------------------------------------
 | admin Routes
@@ -14,11 +17,24 @@ use App\Http\Controllers\Dashboard\DashboardController;
 |
 */
 
-Route::group(['namespace' => 'Dashboard', 'middleware' => ['auth:admin'], 'prefix' => 'admin',], function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
-});
+Route::group([
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
+], function () {
 
-Route::group(['namespace' => 'Dashboard', 'prefix' => 'admin','middleware' => ['guest:admin'],], function () {
-    Route::get('login', [LoginController::class, 'login'])->name('admin.login');
-    Route::post('login', [LoginController::class, 'postLogin'])->name('admin.post.login');
+
+    // Route::get('index/{locale}', [App\Http\Controllers\HomeController::class, 'lang']);
+
+    Route::group(['namespace' => 'Dashboard', 'middleware' => ['auth:admin'], 'prefix' => 'admin',], function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
+        Route::group(['prefix' => 'setting',], function () {
+            Route::get('shipping-methods/{type}', [SettingsController::class, 'editShippingMethods'])->name('edit.shippings.methods');
+            Route::put('shipping-methods/{id}', [SettingsController::class, 'updateShippingMethods'])->name('update.shippings.methods');
+        });
+    });
+
+    Route::group(['namespace' => 'Dashboard', 'prefix' => 'admin', 'middleware' => ['guest:admin'],], function () {
+        Route::get('login', [LoginController::class, 'login'])->name('admin.login');
+        Route::post('login', [LoginController::class, 'postLogin'])->name('admin.post.login');
+    });
 });
