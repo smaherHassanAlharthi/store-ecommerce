@@ -1,0 +1,22 @@
+<?php
+return [
+    'store_name'=> "smaher ecommerce",
+    "total_sales" => "Total sales",
+    "total_orders" => "Total orders",
+    "number_products" => "Number products",
+    "number_clients" => "Number clients",
+    "latest_orders" => "Latest orders",
+    "ordrt_id" => "Order ID",
+    "customer" => "Customer",
+    "price" => "Price",
+    "status" => "Status",
+    "total" => "Total($)",
+    "latest_reviews" => "Latest reviews",
+    "product" => "Product",
+    "rating" => "Rating",
+    "setting" => "Setting",
+    "back"=>"Back",
+    "save"=>"Save",
+    "success_massage" => "Update completed successfully.",
+    "failed_massage" => "There was an error, please try again later",
+];
