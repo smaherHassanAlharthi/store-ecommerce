@@ -6,6 +6,7 @@ return [
     "internal_delivery" => "توصيل داخلي",
     "external_delivery" => "توصيل خارجي",
     "update_delivery" => "تعديل وسيلة التوصيل",
+    "hello" => "مرحباً",
 
 ];
 ?>

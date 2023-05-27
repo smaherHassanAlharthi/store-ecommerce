@@ -7,10 +7,10 @@
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="">الرئيسية </a>
+                                <li class="breadcrumb-item"><a href="">{{__('translation.home')}} </a>
                                 </li>
 
-                                <li class="breadcrumb-item active">وسائل التوصيل
+                                <li class="breadcrumb-item active">{{ __('admin/sidebar.delivery') }}
                                 </li>
                             </ol>
                         </div>
@@ -52,9 +52,9 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label
-                                                                for="projectinput1">{{ __('admin/shippings.name') }}</label>
+                                                                for="projectinput1">{{ __('translation.name') }}</label>
                                                             <input type="text" value="{{ $shippingMethod->value }}"
-                                                                id="name" class="form-control" placeholder="{{ __('admin/shippings.name') }}"
+                                                                id="name" class="form-control" placeholder="{{ __('translation.name') }}"
                                                                 name="value">
                                                             @error('value')
                                                                 <span class="text-danger">{{ $message }}</span>
