@@ -30,6 +30,8 @@ Route::group([
         Route::group(['prefix' => 'setting',], function () {
             Route::get('shipping-methods/{type}', [SettingsController::class, 'editShippingMethods'])->name('edit.shippings.methods');
             Route::put('shipping-methods/{id}', [SettingsController::class, 'updateShippingMethods'])->name('update.shippings.methods');
+            Route::get('logout', [LoginController::class, 'logout'])->name('admin.logout');
+
         });
     });
 
@@ -38,3 +40,5 @@ Route::group([
         Route::post('login', [LoginController::class, 'postLogin'])->name('admin.post.login');
     });
 });
+
+Route::get('login', [LoginController::class, 'login'])->name('login');
