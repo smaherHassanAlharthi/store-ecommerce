@@ -19,4 +19,8 @@ return [
     "save"=>"Save",
     "success_massage" => "Update completed successfully.",
     "failed_massage" => "There was an error, please try again later",
+    "home"=>"Home",
+    "name"=> "Name",
+    "email" =>  "Email",
+
 ];
