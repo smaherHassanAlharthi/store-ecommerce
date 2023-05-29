@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Models\Category;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('testLayout', function () {
-    return view('layouts.admin');
-});
+// Route::get('testLayout', function () {
+//     return view('layouts.admin');
+// });
+
+// Route::get('test',function(){
+//     $category = Category::first();
+//     $category->makeVisible(['translations']);
+//     return $category;
+// });

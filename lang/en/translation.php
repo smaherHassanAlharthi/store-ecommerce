@@ -17,10 +17,17 @@ return [
     "setting" => "Setting",
     "back"=>"Back",
     "save"=>"Save",
+    "delete"=>"Delete",
+    "edit"=>"Edit",
     "success_massage" => "Update completed successfully.",
+    "add_successfully_massage" => "Add successfully",
+    "delete_successfully_massage" => "delete successfully",
     "failed_massage" => "There was an error, please try again later",
     "home"=>"Home",
+    "home_categories"=>"Home Categories",
     "name"=> "Name",
     "email" =>  "Email",
-
+    "all_categories"=>"All Category",
+    "active" => "Active",
+    "no_active" => "No Active",
 ];
