@@ -15,22 +15,23 @@ class MainCategoriesController extends Controller
 {
     public function index()
     {
-        $categories = Category::with('_parent')->orderBy('id', 'DESC')->paginate(PAGINATION_COUNT);
+        $categories = Category::with('_parent')->orderBy('id','DESC') -> paginate(PAGINATION_COUNT);
         return view('dashboard.categories.index', compact('categories'));
     }
 
     public function create()
     {
-        $categories =   Category::select('id', 'parent_id')->get();
-        return view('dashboard.categories.create', compact('categories'));
+         $categories =   Category::select('id','parent_id')->get();
+        return view('dashboard.categories.create',compact('categories'));
     }
 
-    public function store(Request $request)
+    public function store(MainCategoryRequest $request)
     {
-        // return $request;
+
         try {
 
             DB::beginTransaction();
+
             //validation
 
             if (!$request->has('is_active'))
@@ -40,10 +41,10 @@ class MainCategoriesController extends Controller
 
             //if user choose main category then we must remove paret id from the request
 
-            // if ($request->type == CategoryType::mainCategory) //main category
-            // {
-            //     $request->request->add(['parent_id' => null]);
-            // }
+            if($request -> type == CategoryType::mainCategory) //main category
+            {
+                $request->request->add(['parent_id' => null]);
+            }
 
             //if he choose child category we mus t add parent id
 
@@ -54,12 +55,14 @@ class MainCategoriesController extends Controller
             $category->name = $request->name;
             $category->save();
 
-            return redirect()->route('admin.maincategories')->with(['success' => __('translation.add_successfully_massage')]);
+            return redirect()->route('admin.maincategories')->with(['success' => 'تم ألاضافة بنجاح']);
             DB::commit();
+
         } catch (\Exception $ex) {
             DB::rollback();
-            return redirect()->route('admin.maincategories')->with(['error' => __('translation.failed_massage')]);
+            return redirect()->route('admin.maincategories')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
+
     }
 
 
@@ -70,23 +73,25 @@ class MainCategoriesController extends Controller
         $category = Category::orderBy('id', 'DESC')->find($id);
 
         if (!$category)
-            return redirect()->route('admin.maincategories')->with(['error' =>  __('admin/categories.category_not_found')]);
+            return redirect()->route('admin.maincategories')->with(['error' => 'هذا القسم غير موجود ']);
 
         return view('dashboard.categories.edit', compact('category'));
+
     }
 
 
     public function update($id, MainCategoryRequest $request)
     {
-        return $request;
         try {
             //validation
 
             //update DB
+
+
             $category = Category::find($id);
 
             if (!$category)
-                return redirect()->route('admin.maincategories')->with(['error' => __('admin/categories.category_not_found')]);
+                return redirect()->route('admin.maincategories')->with(['error' => 'هذا القسم غير موجود']);
 
             if (!$request->has('is_active'))
                 $request->request->add(['is_active' => 0]);
@@ -99,11 +104,12 @@ class MainCategoriesController extends Controller
             $category->name = $request->name;
             $category->save();
 
-            return redirect()->route('admin.maincategories')->with(['success' =>  __('translation.success_massage')]);
-        } catch (Exception $ex) {
-            // return $ex ;
-            return redirect()->route('admin.maincategories')->with(['error' => __('translation.failed_massage')]);
+            return redirect()->route('admin.maincategories')->with(['success' => 'تم ألتحديث بنجاح']);
+        } catch (\Exception $ex) {
+
+            return redirect()->route('admin.maincategories')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
+
     }
 
 
@@ -115,13 +121,15 @@ class MainCategoriesController extends Controller
             $category = Category::orderBy('id', 'DESC')->find($id);
 
             if (!$category)
-                return redirect()->route('admin.maincategories')->with(['error' =>  __('admin/categories.category_not_found')]);
+                return redirect()->route('admin.maincategories')->with(['error' => 'هذا القسم غير موجود ']);
 
             $category->delete();
 
-            return redirect()->route('admin.maincategories')->with(['success' =>  __('translation.delete_successfully_massage')]);
+            return redirect()->route('admin.maincategories')->with(['success' => 'تم  الحذف بنجاح']);
+
         } catch (\Exception $ex) {
-            return redirect()->route('admin.maincategories')->with(['error' => __('translation.failed_massage')]);
+            return redirect()->route('admin.maincategories')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
     }
+
 }

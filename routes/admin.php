@@ -7,6 +7,7 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\ProfileController;
 use App\Http\Controllers\Dashboard\MainCategoriesController;
 use App\Http\Controllers\Dashboard\SubCategoriesController;
+use App\Http\Controllers\Dashboard\BrandsController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -63,6 +64,19 @@ Route::group([
             Route::get('delete/{id}', [SubCategoriesController::class, 'destroy'])->name('admin.subcategories.delete');
         });
         ################################## end categories    #######################################
+
+        ################################## brands routes ######################################
+        Route::group(['prefix' => 'brands', ], function () {
+            // 'middleware' => 'can:brands'
+            Route::get('/', [BrandsController::class, 'index'])->name('admin.brands');
+            Route::get('create',[ BrandsController::class,'create'])->name('admin.brands.create');
+            Route::post('store', [BrandsController::class,'store'])->name('admin.brands.store');
+            Route::get('edit/{id}', [BrandsController::class,'edit'])->name('admin.brands.edit');
+            Route::post('update/{id}',[ BrandsController::class,'update'])->name('admin.brands.update');
+            Route::get('delete/{id}',[ BrandsController::class,'destroy'])->name('admin.brands.delete');
+
+        });
+        ################################## end brands    #######################################
 
 
     });

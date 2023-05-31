@@ -124,4 +124,5 @@ class SubCategoriesController extends Controller
             return redirect()->route('admin.subcategories')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
     }
+
 }
