@@ -9,8 +9,7 @@ use Astrotomic\Translatable\Translatable;
 
 class Category extends Model
 {
-    use HasFactory;
-    use Translatable;
+    use HasFactory, Translatable;
 
     /**
      * The relations to eager load on every query.
@@ -57,7 +56,7 @@ class Category extends Model
 
     public function getActive()
     {
-        return  $this->is_active  == 0 ?  'غير مفعل'   : 'مفعل';
+        return  $this->is_active  == 0 ? __('translation.no_active') : __('translation.active');
     }
 
     public function _parent()

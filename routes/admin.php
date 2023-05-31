@@ -5,6 +5,9 @@ use App\Http\Controllers\Dashboard\LoginController;
 use App\Http\Controllers\Dashboard\SettingsController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\ProfileController;
+use App\Http\Controllers\Dashboard\MainCategoriesController;
+use App\Http\Controllers\Dashboard\SubCategoriesController;
+use App\Http\Controllers\Dashboard\BrandsController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
@@ -38,8 +41,46 @@ Route::group([
             Route::get('edit', [ProfileController::class, 'editProfile'])->name('edit.profile');
             Route::put('update', [ProfileController::class, 'updateProfile'])->name('update.profile');
         });
+        ##################################### categories routes #####################################
+        Route::group(['prefix' => 'main_categories'], function () {
+
+            Route::get('/', [MainCategoriesController::class, 'index'])->name('admin.maincategories');
+            Route::get('create', [MainCategoriesController::class, 'create'])->name('admin.maincategories.create');
+            Route::post('store', [MainCategoriesController::class, 'store'])->name('admin.maincategories.store');
+            Route::get('edit/{id}', [MainCategoriesController::class, 'edit'])->name('admin.maincategories.edit');
+            Route::post('update/{id}', [MainCategoriesController::class, 'update'])->name('admin.maincategories.update');
+            Route::get('delete/{id}', [MainCategoriesController::class, 'destroy'])->name('admin.maincategories.delete');
+        });
+        #####################################   end categories  #####################################
+
+        ################################## sub categories routes ######################################
+        Route::group(['prefix' => 'sub_categories'], function () {
+
+            Route::get('/', [SubCategoriesController::class, 'index'])->name('admin.subcategories');
+            Route::get('create', [SubCategoriesController::class, 'create'])->name('admin.subcategories.create');
+            Route::post('store', [SubCategoriesController::class, 'store'])->name('admin.subcategories.store');
+            Route::get('edit/{id}', [SubCategoriesController::class, 'edit'])->name('admin.subcategories.edit');
+            Route::post('update/{id}', [SubCategoriesController::class, 'update'])->name('admin.subcategories.update');
+            Route::get('delete/{id}', [SubCategoriesController::class, 'destroy'])->name('admin.subcategories.delete');
+        });
+        ################################## end categories    #######################################
+
+        ################################## brands routes ######################################
+        Route::group(['prefix' => 'brands', ], function () {
+            // 'middleware' => 'can:brands'
+            Route::get('/', [BrandsController::class, 'index'])->name('admin.brands');
+            Route::get('create',[ BrandsController::class,'create'])->name('admin.brands.create');
+            Route::post('store', [BrandsController::class,'store'])->name('admin.brands.store');
+            Route::get('edit/{id}', [BrandsController::class,'edit'])->name('admin.brands.edit');
+            Route::post('update/{id}',[ BrandsController::class,'update'])->name('admin.brands.update');
+            Route::get('delete/{id}',[ BrandsController::class,'destroy'])->name('admin.brands.delete');
+
+        });
+        ################################## end brands    #######################################
+
 
     });
+
 
     Route::group(['namespace' => 'Dashboard', 'prefix' => 'admin', 'middleware' => ['guest:admin'],], function () {
         Route::get('login', [LoginController::class, 'login'])->name('admin.login');

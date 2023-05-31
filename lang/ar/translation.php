@@ -18,12 +18,19 @@ return [
     "setting"=>"الإعدادات",
     "back"=>"تراجع",
     "save"=>"حفظ",
+    "delete"=>"حذف",
+    "edit"=>"تعديل",
     "success_massage"=>"تم التحديث بنجاح",
+    "add_successfully_massage" => "تمت الإضافة بنجاح",
+    "delete_successfully_massage" => "تم الحذف بنجاح",
     "failed_massage"=>"حدث خطأ يرجى المحاولة فيما بعد",
     "home"=>"الرئيسية",
+    "home_categories"=>"الأقسام الرئيسية",
+    "all_categories"=>" جميع الاقسام الرئيسية",
     "name"=> "الاسم",
     "email" => "البريد الإلكنروني",
-
+    "active" => "مفعل",
+    "no_active" => "غير مفعل",
 
 ];
 ?>
