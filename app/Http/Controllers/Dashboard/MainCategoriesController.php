@@ -15,19 +15,19 @@ class MainCategoriesController extends Controller
 {
     public function index()
     {
-        $categories = Category::with('_parent')->orderBy('id','DESC') -> paginate(PAGINATION_COUNT);
+        $categories = Category::with('_parent')->orderBy('id', 'DESC')->paginate(PAGINATION_COUNT);
         return view('dashboard.categories.index', compact('categories'));
     }
 
     public function create()
     {
-         $categories =   Category::select('id','parent_id')->get();
-        return view('dashboard.categories.create',compact('categories'));
+        $categories =   Category::select('id', 'parent_id')->get();
+        return view('dashboard.categories.create', compact('categories'));
     }
 
     public function store(MainCategoryRequest $request)
     {
-
+// return $request;
         try {
 
             DB::beginTransaction();
@@ -41,12 +41,12 @@ class MainCategoriesController extends Controller
 
             //if user choose main category then we must remove paret id from the request
 
-            if($request -> type == CategoryType::mainCategory) //main category
+            if ($request->type == 1) //main category
             {
                 $request->request->add(['parent_id' => null]);
             }
 
-            //if he choose child category we mus t add parent id
+            //if he choose child category we must add parent id
 
 
             $category = Category::create($request->except('_token'));
@@ -57,12 +57,11 @@ class MainCategoriesController extends Controller
 
             return redirect()->route('admin.maincategories')->with(['success' => 'تم ألاضافة بنجاح']);
             DB::commit();
-
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
+            return $ex;
             DB::rollback();
             return redirect()->route('admin.maincategories')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
-
     }
 
 
@@ -76,7 +75,6 @@ class MainCategoriesController extends Controller
             return redirect()->route('admin.maincategories')->with(['error' => 'هذا القسم غير موجود ']);
 
         return view('dashboard.categories.edit', compact('category'));
-
     }
 
 
@@ -109,7 +107,6 @@ class MainCategoriesController extends Controller
 
             return redirect()->route('admin.maincategories')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
-
     }
 
 
@@ -126,10 +123,8 @@ class MainCategoriesController extends Controller
             $category->delete();
 
             return redirect()->route('admin.maincategories')->with(['success' => 'تم  الحذف بنجاح']);
-
         } catch (\Exception $ex) {
             return redirect()->route('admin.maincategories')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
     }
-
 }

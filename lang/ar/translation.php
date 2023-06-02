@@ -25,12 +25,13 @@ return [
     "delete_successfully_massage" => "تم الحذف بنجاح",
     "failed_massage"=>"حدث خطأ يرجى المحاولة فيما بعد",
     "home"=>"الرئيسية",
-    "home_categories"=>"الأقسام الرئيسية",
-    "all_categories"=>" جميع الاقسام الرئيسية",
+    "categories"=>"الأقسام ",
+    "all_categories"=>"جميع الاقسام",
     "name"=> "الاسم",
     "email" => "البريد الإلكنروني",
     "active" => "مفعل",
     "no_active" => "غير مفعل",
+    "add_category" => "إضافة قسم  ",
 
 ];
 ?>

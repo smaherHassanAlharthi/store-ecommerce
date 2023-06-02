@@ -11,10 +11,11 @@
                                 <li class="breadcrumb-item"><a href="">{{__('translation.home')}}  </a>
                                 </li>
                                 <li class="breadcrumb-item"><a href="{{ route('admin.maincategories') }}">
-                                        الاقسام الرئيسية
+                                        {{__('translation.categories')}}
                                     </a>
                                 </li>
-                                <li class="breadcrumb-item active"> أضافه قسم رئيسي
+                                <li class="breadcrumb-item active">
+                                    {{__('translation.add_category')}}
                                 </li>
                             </ol>
                         </div>
@@ -28,7 +29,7 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title" id="basic-layout-form"> أضافة قسم رئيسي </h4>
+                                    <h4 class="card-title" id="basic-layout-form">   {{__('translation.add_category')}}</h4>
                                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
                                         <ul class="list-inline mb-0">
