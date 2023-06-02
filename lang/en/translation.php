@@ -24,10 +24,12 @@ return [
     "delete_successfully_massage" => "delete successfully",
     "failed_massage" => "There was an error, please try again later",
     "home"=>"Home",
-    "home_categories"=>"Home Categories",
+    "categories"=>"Categories",
     "name"=> "Name",
     "email" =>  "Email",
     "all_categories"=>"All Category",
     "active" => "Active",
     "no_active" => "No Active",
+    "add_category" => "add category",
+
 ];
