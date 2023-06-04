@@ -11,7 +11,7 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="">{{__('translation.home')}}  </a>
                                 </li>
-                                <li class="breadcrumb-item"><a href=""> {{__('translation.home_categories')}}</a>
+                                <li class="breadcrumb-item"><a href=""> {{__('translation.categories')}}</a>
                                 </li>
                                 <li class="breadcrumb-item active"> تعديل - {{$category->name}}
                                 </li>
