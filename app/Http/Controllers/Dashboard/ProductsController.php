@@ -16,13 +16,14 @@ use App\Models\Image;
 use App\Models\Product;
 use App\Models\Tag;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+
 
 class ProductsController extends Controller
 {
     public function index()
     {
         $products = Product::select('id','slug','price', 'created_at')->paginate(PAGINATION_COUNT);
-        // return  $products;
         return view('dashboard.products.general.index', compact('products'));
     }
 
@@ -107,12 +108,13 @@ class ProductsController extends Controller
     }
 
     public function addImages($product_id){
-        return view('dashboard.products.images.create')->withId($product_id);
+        $products = Product::whereId($product_id)->with('images')->first();
+        return view('dashboard.products.images.create',compact('products'))->with('id',$product_id);
+        // ->withId($product_id);
     }
 
     //to save images to folder only
     public function saveProductImages(Request $request ){
-
         $file = $request->file('dzfile');
         $filename = uploadImage('products', $file);
 
@@ -124,6 +126,7 @@ class ProductsController extends Controller
     }
 
     public function saveProductImagesDB(ProductImagesRequest $request){
+        //  return $request;
 
         try {
             // save dropzone images
@@ -136,15 +139,21 @@ class ProductsController extends Controller
                 }
             }
 
-            return redirect()->route('admin.products')->with(['success' => 'تم التحديث بنجاح']);
+            return back()->with(['success' => 'تم التحديث بنجاح']);
 
         }catch(\Exception $ex){
 
         }
     }
+
+    public function deleteImages($id){
+        $product_images = Image::where('id',$id)->first();
+        $product_images->delete();
+        return back()->with(['success' => 'تم الحذف بنجاح']);
+    }
+
     public function edit($id)
     {
-
         //get specific categories and its translations
         $category = Category::orderBy('id', 'DESC')->find($id);
 

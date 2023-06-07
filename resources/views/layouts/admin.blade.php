@@ -18,7 +18,6 @@
         rel="stylesheet">
     <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css"
           rel="stylesheet">
-
     <link rel="stylesheet" type="text/css" href="{{asset('public/assets/admin/'.getFolder().'/plugins/animate/animate.css')}}">
     <!-- BEGIN VENDOR CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('public/assets/admin/'.getFolder().'/vendors.css')}}">
@@ -86,6 +85,8 @@
 
 <!-- BEGIN VENDOR JS-->
 <script src="{{asset('public/assets/admin/vendors/js/vendors.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('public/assets/admin/vendors/js/editors/ckeditor/ckeditor.js')}}" type="text/javascript"></script>
+
 <!-- BEGIN VENDOR JS-->
 <script src="{{asset('public/assets/admin/vendors/js/tables/datatable/datatables.min.js')}}"
         type="text/javascript"></script>
@@ -110,6 +111,8 @@
 
 <script src="{{asset('public/assets/admin/vendors/js/forms/icheck/icheck.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('public/assets/admin/js/scripts/pages/chat-application.js')}}" type="text/javascript"></script>
+<script src="{{asset('public/assets/admin/vendors/js/extensions/dropzone.min.js')}}" type="text/javascript"></script>
+
 <!-- END PAGE VENDOR JS-->
 <!-- BEGIN MODERN JS-->
 <script src="{{asset('public/assets/admin/js/core/app-menu.js')}}" type="text/javascript"></script>
@@ -123,6 +126,9 @@
 <script src="{{asset('public/assets/admin/js/scripts/tables/datatables/datatable-basic.js')}}"
         type="text/javascript"></script>
 <script src="{{asset('public/assets/admin/js/scripts/extensions/date-time-dropper.js')}}" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="{{asset('public/assets/admin/vendors/css/file-uploaders/dropzone.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('public/assets/admin/css-rtl/plugins/file-uploaders/dropzone.css')}}">
+
 <!-- END PAGE LEVEL JS-->
 
 <script src="{{asset('public/assets/admin/js/scripts/forms/checkbox-radio.js')}}" type="text/javascript"></script>

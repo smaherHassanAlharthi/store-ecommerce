@@ -184,7 +184,7 @@
                                     <div class="media">
                                         <div class="media-left">
                                             <span class="avatar avatar-sm avatar-online rounded-circle">
-                                                <img src="{{ asset('assets/admin/images/portrait/small/avatar-s-19.png') }}"
+                                                <img src="{{ asset('public/assets/admin/images/portrait/small/avatar-s-19.png') }}"
                                                     alt="avatar"><i></i></span>
                                         </div>
                                         <div class="media-body">
@@ -203,7 +203,7 @@
                                     <div class="media">
                                         <div class="media-left">
                                             <span class="avatar avatar-sm avatar-busy rounded-circle">
-                                                <img src="{{ asset('assets/admin/images/portrait/small/avatar-s-2.png') }}"
+                                                <img src="{{ asset('public/assets/admin/images/portrait/small/avatar-s-2.png') }}"
                                                     alt="avatar"><i></i></span>
                                         </div>
                                         <div class="media-body">
@@ -222,7 +222,7 @@
                                     <div class="media">
                                         <div class="media-left">
                                             <span class="avatar avatar-sm avatar-online rounded-circle">
-                                                <img src="{{ asset('assets/admin/images/portrait/small/avatar-s-3.png') }}"
+                                                <img src="{{ asset('public/assets/admin/images/portrait/small/avatar-s-3.png') }}"
                                                     alt="avatar"><i></i></span>
                                         </div>
                                         <div class="media-body">
@@ -241,7 +241,7 @@
                                     <div class="media">
                                         <div class="media-left">
                                             <span class="avatar avatar-sm avatar-away rounded-circle">
-                                                <img src="{{ asset('assets/admin/images/portrait/small/avatar-s-6.png') }}"
+                                                <img src="{{ asset('public/assets/admin/images/portrait/small/avatar-s-6.png') }}"
                                                     alt="avatar"><i></i></span>
                                         </div>
                                         <div class="media-body">

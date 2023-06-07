@@ -21,15 +21,55 @@
                 </div>
             </div>
             <div class="content-body">
+
+                <section id="basic-form-layouts">
+                    <div class="row match-height">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-content collapse show">
+                                    <div class="card-body">
+                                        <h4 class="form-section"><i class="ft-home"></i> صور المنتج </h4>
+                                        <div class="form-group">
+                                            {{-- @if ($products->images == null) --}}
+                                                <div class="row">
+                                                    @foreach ($products->images as $photo)
+                                                        <div class="col-lg-2 col-md-4 col-sm-6 col-12">
+                                                            <div class="card" style="width: 15rem;">
+                                                                <img class="card-img-top"
+                                                                    style="width: 15rem; height: 10rem;"
+                                                                    src="{{ $photo->photo }}" alt="Card image cap">
+                                                                <div class="card-body d-flex justify-content-around">
+                                                                    <a class="btn btn-danger" href="{{route('productDeleteImages',$photo->id)}}">
+                                                                        حذف
+                                                                    </a>
+                                                                    <a href="{{ $photo->photo }}" class="btn btn-info"
+                                                                        target="_blank">عرض</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            {{-- @else
+                                                <p>لا يوجد صور لهذا المنتج.</p>
+                                            @endif --}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </section>
+
+‹
+
+
                 <!-- Basic form layout section start -->
                 <section id="basic-form-layouts">
                     <div class="row match-height">
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title" id="basic-layout-form"> أضافة منتج جديد </h4>
-                                    <a class="heading-elements-toggle"><i
-                                            class="la la-ellipsis-v font-medium-3"></i></a>
+                                    <h4 class="card-title" id="basic-layout-form"> إضافة منتج جديد </h4>
+                                    <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
                                         <ul class="list-inline mb-0">
                                             <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
@@ -43,13 +83,11 @@
                                 @include('dashboard.includes.alerts.errors')
                                 <div class="card-content collapse show">
                                     <div class="card-body">
-                                        <form class="form"
-                                              action="{{route('admin.products.images.store.db')}}"
-                                              method="POST"
-                                              enctype="multipart/form-data">
+                                        <form class="form" action="{{ route('admin.products.images.store.db') }}"
+                                            method="POST" enctype="multipart/form-data">
                                             @csrf
 
-                                            <input type="hidden" name="product_id" value="{{$id}}">
+                                            <input type="hidden" name="product_id" value="{{ $id }}">
                                             <div class="form-body">
 
                                                 <h4 class="form-section"><i class="ft-home"></i> صور المنتج </h4>
@@ -58,21 +96,22 @@
                                                         <div class="dz-message">يمكنك رفع اكثر من صوره هنا</div>
                                                     </div>
                                                     <br><br>
+
                                                 </div>
 
 
-                                            </div>
 
 
-                                            <div class="form-actions">
-                                                <button type="button" class="btn btn-warning mr-1"
+
+                                                <div class="form-actions">
+                                                    <button type="button" class="btn btn-warning mr-1"
                                                         onclick="history.back();">
-                                                    <i class="ft-x"></i> تراجع
-                                                </button>
-                                                <button type="submit" class="btn btn-primary">
-                                                    <i class="la la-check-square-o"></i> تحديث
-                                                </button>
-                                            </div>
+                                                        <i class="ft-x"></i> تراجع
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary">
+                                                        <i class="la la-check-square-o"></i> تحديث
+                                                    </button>
+                                                </div>
                                         </form>
 
                                     </div>
@@ -89,65 +128,53 @@
 @stop
 
 @section('script')
-
-
     <script>
-
-             var uploadedDocumentMap = {}
-            Dropzone.options.dpzMultipleFiles = {
-                paramName: "dzfile", // The name that will be used to transfer the file
-                //autoProcessQueue: false,
-                maxFilesize: 5, // MB
-                clickable: true,
-                addRemoveLinks: true,
-                acceptedFiles: 'image/*',
-                dictFallbackMessage: " المتصفح الخاص بكم لا يدعم خاصيه تعدد الصوره والسحب والافلات ",
-                dictInvalidFileType: "لايمكنك رفع هذا النوع من الملفات ",
-                dictCancelUpload: "الغاء الرفع ",
-                dictCancelUploadConfirmation: " هل انت متاكد من الغاء رفع الملفات ؟ ",
-                dictRemoveFile: "حذف الصوره",
-                dictMaxFilesExceeded: "لايمكنك رفع عدد اكثر من هضا ",
-                headers: {
-                    'X-CSRF-TOKEN':
-                        "{{ csrf_token() }}"
+        var uploadedDocumentMap = {}
+        Dropzone.options.dpzMultipleFiles = {
+            paramName: "dzfile", // The name that will be used to transfer the file
+            //autoProcessQueue: false,
+            maxFilesize: 5, // MB
+            clickable: true,
+            addRemoveLinks: true,
+            acceptedFiles: 'image/*',
+            dictFallbackMessage: " المتصفح الخاص بكم لا يدعم خاصيه تعدد الصوره والسحب والافلات ",
+            dictInvalidFileType: "لايمكنك رفع هذا النوع من الملفات ",
+            dictCancelUpload: "الغاء الرفع ",
+            dictCancelUploadConfirmation: " هل انت متاكد من الغاء رفع الملفات ؟ ",
+            dictRemoveFile: "حذف الصوره",
+            dictMaxFilesExceeded: "لايمكنك رفع عدد اكثر من هضا ",
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}",
+            },
+            url: "{{ route('admin.products.images.store') }}", // Set the url
+            success: function(file, response) {
+                $('form').append('<input type="hidden" name="document[]" value="' + response.name + '">')
+                uploadedDocumentMap[file.name] = response.name
+            },
+            removedfile: function(file) {
+                file.previewElement.remove()
+                var name = ''
+                if (typeof file.file_name !== 'undefined') {
+                    name = file.file_name
+                } else {
+                    name = uploadedDocumentMap[file.name]
                 }
+                $('form').find('input[name="document[]"][value="' + name + '"]').remove()
+            },
+            // previewsContainer: "#dpz-btn-select-files", // Define the container to display the previews
+            init: function() {
 
-                ,
-                url: "{{ route('admin.products.images.store') }}", // Set the url
-                success:
-                    function (file, response) {
-                        $('form').append('<input type="hidden" name="document[]" value="' + response.name + '">')
-                        uploadedDocumentMap[file.name] = response.name
-                    }
-                ,
-                removedfile: function (file) {
-                    file.previewElement.remove()
-                    var name = ''
-                    if (typeof file.file_name !== 'undefined') {
-                        name = file.file_name
-                    } else {
-                        name = uploadedDocumentMap[file.name]
-                    }
-                    $('form').find('input[name="document[]"][value="' + name + '"]').remove()
-                }
-                ,
-                // previewsContainer: "#dpz-btn-select-files", // Define the container to display the previews
-                init: function () {
-
-                        @if(isset($event) && $event->document)
+                @if (isset($event) && $event->document)
                     var files =
-                    {!! json_encode($event->document) !!}
-                        for (var i in files) {
+                        {!! json_encode($event->document) !!}
+                    for (var i in files) {
                         var file = files[i]
                         this.options.addedfile.call(this, file)
                         file.previewElement.classList.add('dz-complete')
                         $('form').append('<input type="hidden" name="document[]" value="' + file.file_name + '">')
                     }
-                    @endif
-                }
+                @endif
             }
-
-
-
+        }
     </script>
-    @stop
+@stop

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\ProductQty;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProductStockRequest extends FormRequest
@@ -29,7 +30,7 @@ class ProductStockRequest extends FormRequest
             'manage_stock' => 'required|in:0,1',
             'in_stock' => 'required|in:0,1',
             //'qty' => 'required_if:manage_stock,==,1',
-            // 'qty'  =>[new ProductQty($this ->manage_stock )]
+            'qty'  =>[new ProductQty($this ->manage_stock )]
         ];
     }
 }
